@@ -41,6 +41,12 @@
         <th></th>
     </tr>
     <tr th:each="actividad, info : ${listaActividades}">
+        <td th:text="${info.index + 1 }"></td>
+        <td th:text="${actividad.nombreactividad}"></td>
+        <td th:text="${actividad.peso}"></td>
+        <td th:text="${actividad.estado}"></td>
+        <td><a class="btn btn-info" th:href="@{'/actividad/editar?id=' + ${actividad.idactividad}}"></a></td>
+        <td><a class="btn btn-danger" th:href="@{'/actividad/borrar?id=' + ${actividad.idactividad}}"></a></td>
     </tr>
 </table>
 </body>
