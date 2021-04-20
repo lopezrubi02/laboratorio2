@@ -22,9 +22,7 @@ public class ProyectoController {
 
     @GetMapping("/proyecto/listar")
     public String listarProyecto(Model model){
-
         model.addAttribute("listaProyectos",proyectoRepository.findAll());
-
         return "/proyecto/listar";
     }
 

@@ -28,6 +28,11 @@
         <th></th>
     </tr>
     <tr th:each="proyecto, info : ${listaProyectos}">
+        <td th:text="${info.index + 1}"></td>
+        <td th:text="${proyecto.nombreproyecto}"></td>
+        <td th:text="${proyecto.usuario_owner}"></td>
+        <td><a class="btn btn-info" th:href="@{'/proyecto/editar?correo=' + ${proyecto.idproyecto}}">Editar</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/proyecto/borrar?correo=' + ${proyecto.idproyecto}}">Borrar</a></td>
     </tr>
 </table>
 </body>
