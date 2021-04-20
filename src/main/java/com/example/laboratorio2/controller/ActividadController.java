@@ -1,6 +1,7 @@
 package com.example.laboratorio2.controller;
 
 import com.example.laboratorio2.entity.ActividadEntity;
+import com.example.laboratorio2.entity.AreaEntity;
 import com.example.laboratorio2.entity.ProyectoEntity;
 import com.example.laboratorio2.repository.ActividadRepository;
 import com.example.laboratorio2.repository.ProyectoRepository;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -34,7 +36,16 @@ public class ActividadController {
     }
 
     @PostMapping("actividad/guardar")
-    public String guardarActividad(ActividadEntity actividad, @RequestParam("idProyecto") int idProyecto){
+    public String guardarActividad(ActividadEntity actividad, @RequestParam("idProyecto") int idProyecto,
+                                   RedirectAttributes attr){
+
+        Optional<ActividadEntity> actividadOpt = actividadRepository.findById(actividad.getIdactividad());
+        if(actividadOpt.isPresent()){
+            attr.addFlashAttribute("Actividad editada exitosamente");
+        }else{
+            attr.addFlashAttribute("Actividad agregada exitosamente");
+        }
+
         actividadRepository.save(actividad);
         return "redirect:/proyecto/editar?id=" + idProyecto;
     }
@@ -59,11 +70,12 @@ public class ActividadController {
     }
 
     @GetMapping("/actividad/borrar")
-    public String borrarActividad(@RequestParam("id") int id, Model model){
+    public String borrarActividad(@RequestParam("id") int id, Model model,
+                                  RedirectAttributes attr){
         Optional<ActividadEntity> actividadOpt = actividadRepository.findById(id);
         if(actividadOpt.isPresent()){
-            ActividadEntity actividad = actividadOpt.get();
             actividadRepository.deleteById(id);
+            attr.addFlashAttribute("msg","Area borrada exitosamente");
         }
         return "redirect:/actividad/editar?id=" + id ;
     }
