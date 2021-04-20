@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AreaRepository extends JpaRepository<AreaEntity,Integer> {
 
-    @Query(value = "SELECT correo,nombres,apellidos FROM pm_db.usuarios where idarea=?1;",nativeQuery = true)
+    @Query(value = "SELECT correo,nombres,apellidos FROM pm_db.usuarios where idarea=%?1;",nativeQuery = true)
     List<AreaEntity> listarUsuariosporArea(int idarea);
 
 }

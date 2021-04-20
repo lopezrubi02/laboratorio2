@@ -5,6 +5,7 @@ import com.example.laboratorio2.entity.AreaEntity;
 import com.example.laboratorio2.entity.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity,String> {
 
-    @Query(value = "SELECT correo,nombres,apellidos FROM pm_db.usuarios where idarea=?1;",nativeQuery = true)
-    List<AreaEntity> listarUsuariosporArea(int idarea);
+    @Query(value = "SELECT * FROM pm_db.usuarios where idarea=?1",nativeQuery = true)
+    List<UsuarioEntity> listarUsuariosporArea(int idarea);
 
 }
