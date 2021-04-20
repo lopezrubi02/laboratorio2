@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Proyecto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+        <a class="navbar-brand" href="/proyecto/listar">Proyectos</a>
+        <a class="navbar-brand" href="/usuario/listar">Usuarios</a>
+        <a class="navbar-brand" href="/area/listar">Areas</a>
+    </div>
+</nav>
+<h2>Editar Proyecto</h2>
+<hr/>
+<form method="post" th:action="@{'/proyecto/guardar'}">
+    <a th:href="@{'/proyecto/listar'}" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+<br>
+<h5>Lista de Actividades del Proyecto</h5>
+<h7>Progreso del Proyecto</h7>
+<!--<div class="progress" th:if="${pesoActividades != 0}">-->
+<!--    <div class="progress-bar" role="progressbar" th:attr="aria-valuenow=${pesoActividadesFinalizadas/pesoActividades*100}" th:style="'width:'+ ${pesoActividadesFinalizadas/pesoActividades*100}+'%'" aria-valuemin="0" aria-valuemax="100" th:text="${pesoActividadesFinalizadas/pesoActividades*100}+'%'"></div>-->
+<!--</div>-->
+<br>
+<a class="btn btn-primary mt-4 mb-4">Nueva
+    Actividad</a>
+<table class="table table-sm">
+    <tr>
+        <th>#</th>
+        <th>Nombre de la Actividad</th>
+        <th>Usuario Responsable</th>
+        <th>Peso</th>
+        <th>Estado</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="actividad, info : ${listaActividades}">
+    </tr>
+</table>
+</body>
+</html>
+
