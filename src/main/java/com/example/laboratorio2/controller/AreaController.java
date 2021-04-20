@@ -21,8 +21,6 @@ public class AreaController {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-
-
     @GetMapping("/area/listar")
     public String areaList(Model model) {
         model.addAttribute("listaArea",areaRepository.findAll());
@@ -69,8 +67,6 @@ public class AreaController {
             attr.addFlashAttribute("msg","Area borrada exitosamente");
         }
         return "redirect:/area/listar";
-
     }
-
 
 }

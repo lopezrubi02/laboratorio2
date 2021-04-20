@@ -4,6 +4,7 @@ import com.example.laboratorio2.entity.ActividadEntity;
 import com.example.laboratorio2.entity.ProyectoEntity;
 import com.example.laboratorio2.repository.ActividadRepository;
 import com.example.laboratorio2.repository.ProyectoRepository;
+import com.example.laboratorio2.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,15 @@ public class ActividadController {
     @Autowired
     ProyectoRepository proyectoRepository;
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
     @GetMapping("/actividad/agregar")
-    public String agregarActividad(){return "atividad/crear";}
+    public String agregarActividad(Model model){
+
+        model.addAttribute("listaUsuarios",usuarioRepository.findAll());
+        return "atividad/crear";
+    }
 
     @PostMapping("actividad/guardar")
     public String guardarActividad(ActividadEntity actividad, @RequestParam("idProyecto") int idProyecto){
@@ -58,7 +66,5 @@ public class ActividadController {
         }
         return "redirect:/actividad/editar?id=" + id ;
     }
-
-
 
 }

@@ -29,8 +29,11 @@
         <input type="text" class="form-control" th:field="*{descripcion}">
     </div>
     <div class="form-group">
-        <label for="usuario_owner">Usuario responsable</label>
-        <input type="text" class="form-control" th:field="*{nombreactividad}">
+        <label for="usuario_owner">Usuario Responsable</label>
+        <select id="usuario_owner">
+            <option th:each="usuario : ${listaUsuarios}"
+                    th:text="${usuario.correo}" th:selected="${usuario.correo==actividad.usuario_owner}"></option>
+        </select>
     </div>
     <div class="form-group">
         <label for="peso">Peso de la actividad</label>
