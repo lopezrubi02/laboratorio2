@@ -39,10 +39,10 @@ public class AreaController {
         System.out.println("nombrearea" + area.getNombrearea());
         areaRepository.save(area);
         Optional<AreaEntity> areaOpt = areaRepository.findById(area.getIdarea());
-        if(areaOpt.isPresent()){
-            attr.addFlashAttribute("msg","Area creada exitosamente");
-        }else{
+        if(area.getIdarea()==areaOpt.isPresent()){
             attr.addFlashAttribute("msg","Area editada exitosamente");
+        }else{
+            attr.addFlashAttribute("msg","Area creada exitosamente");
         }
         return "redirect:/area/listar";
     }
