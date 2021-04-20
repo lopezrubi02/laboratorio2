@@ -5,16 +5,17 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name ="usuarios")
+@Table(name = "usuarios")
 public class UsuarioEntity {
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String correo;
-
+    @Column
     private Integer idarea;
-
-    private String nombre;
-
-    private String apellido;
+    @Column
+    private String nombres;
+    @Column
+    private String apellidos;
 
     public String getCorreo() {
         return correo;
@@ -32,19 +33,19 @@ public class UsuarioEntity {
         this.idarea = idarea;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 }
