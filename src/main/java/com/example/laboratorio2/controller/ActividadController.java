@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
@@ -21,6 +22,14 @@ public class ActividadController {
     @Autowired
     ProyectoRepository proyectoRepository;
 
+    @GetMapping("/actividad/agregar")
+    public String agregarActividad(){return "atividad/crear";}
+
+    @PostMapping("actividad/guardar")
+    public String guardarActividad(ActividadEntity actividad, @RequestParam("idProyecto") int idProyecto){
+        actividadRepository.save(actividad);
+        return "redirect:/proyecto/editar?id=" + idProyecto;
+    }
 
     @GetMapping("/actividad/editar")
     public String editarActividad(@RequestParam("id") int id, Model model){
@@ -48,8 +57,8 @@ public class ActividadController {
             actividadRepository.deleteById(id);
         }
         return "redirect:/actividad/editar?id=" + id ;
-
-
     }
+
+
 
 }

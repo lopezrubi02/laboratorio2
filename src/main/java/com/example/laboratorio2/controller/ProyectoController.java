@@ -20,12 +20,12 @@ public class ProyectoController {
     @Autowired
     ActividadRepository actividadRepository;
 
-    @GetMapping("/proyecto")
+    @GetMapping("/proyecto/listar")
     public String listarProyecto(Model model){
 
         model.addAttribute("listaProyectos",proyectoRepository.findAll());
 
-        return "listaProyectos";
+        return "/proyecto/listar";
     }
 
     @GetMapping("/proyecto/editar")
@@ -36,9 +36,9 @@ public class ProyectoController {
             ProyectoEntity proyecto = proyectoOpt.get();
             model.addAttribute("proyecto",proyecto);
             model.addAttribute("listaActividades",actividadRepository.listaDeActividadesPorProyecto(id));
-            return "editarProyecto";
+            return "/proyecto/editarProyecto";
         }else{
-            return "redirect:/proyecto";
+            return "redirect:/proyecto/listar";
         }
     }
 
