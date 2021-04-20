@@ -38,9 +38,9 @@
             </tr>
             <tr th:each="usuario, u : ${listaUsuarios}">
                 <td th:text="${u.index + 1}"></td>
-                <td th:text="${usuario.}"></td>
-                <td th:text="${usuario.}"></td>
-                <td th:text="${usuario.}"></td>
+                <td th:text="${usuario.correo}"></td>
+                <td th:text="${usuario.nombres}"></td>
+                <td th:text="${usuario.apellidos}"></td>
             </tr>
         </table>
     </body>

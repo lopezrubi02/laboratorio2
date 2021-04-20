@@ -2,6 +2,7 @@ package com.example.laboratorio2.controller;
 
 import com.example.laboratorio2.entity.AreaEntity;
 import com.example.laboratorio2.repository.AreaRepository;
+import com.example.laboratorio2.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,48 +18,56 @@ public class AreaController {
 
     @Autowired
     AreaRepository areaRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
-    @GetMapping("/area")
-    public String shipperList(Model model) {
+
+
+    @GetMapping("/area/listar")
+    public String areaList(Model model) {
         model.addAttribute("listaArea",areaRepository.findAll());
         return "area/listar";
     }
 
-    @GetMapping("/area/nuevo")
-    public String shipperNew(){
+    @GetMapping("/area/agregar")
+    public String areaNew(){
         return "area/crear";
     }
 
     @PostMapping("/area/guardar")
-    public String shipperSave(AreaEntity area, RedirectAttributes attr){
+    public String areaSave(AreaEntity area, RedirectAttributes attr){
         System.out.println("nombrearea" + area.getNombrearea());
         areaRepository.save(area);
-        attr.addFlashAttribute("msg","Area creada exitosamente");
-        return "redirect:/area";
+        Optional<AreaEntity> areaOpt = areaRepository.findById(area.getIdarea());
+        if(areaOpt.isPresent()){
+            attr.addFlashAttribute("msg","Area creada exitosamente");
+        }else{
+            attr.addFlashAttribute("msg","Area editada exitosamente");
+        }
+        return "redirect:/area/listar";
     }
 
     @GetMapping("/area/editar")
-    public String editShipper(@RequestParam("id") int id, Model model){
+    public String editArea(@RequestParam("id") int id, Model model){
         Optional<AreaEntity> areaOpt = areaRepository.findById(id);
-
         if(areaOpt.isPresent()){
             AreaEntity areaEntity = areaOpt.get();
-            model.addAttribute("listaUsuarios",areaRepository.listarUsuariosporArea(id));
+            model.addAttribute("listaUsuarios", usuarioRepository.listarUsuariosporArea(id));
             model.addAttribute("area",areaEntity);
-            return "area/editar";
+            return "area/edit";
         }else{
-            return "redirect:/area";
+            return "redirect:/area/listar";
         }
     }
 
     @GetMapping("/area/borrar")
-    public String deleteShipper(@RequestParam("id") int id){
+    public String deleteArea(@RequestParam("id") int id, RedirectAttributes attr){
         Optional<AreaEntity> areaOpt = areaRepository.findById(id);
-
         if(areaOpt.isPresent()) {
             areaRepository.deleteById(id);
+            attr.addFlashAttribute("msg","Area borrada exitosamente");
         }
-        return "redirect:/shipper";
+        return "redirect:/area/listar";
 
     }
 
