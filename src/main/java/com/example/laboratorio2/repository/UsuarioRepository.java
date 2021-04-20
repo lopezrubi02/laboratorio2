@@ -15,4 +15,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity,String> {
     @Query(value = "SELECT correo,nombres,apellidos FROM pm_db.usuarios where idarea=?1;",nativeQuery = true)
     List<AreaEntity> listarUsuariosporArea(int idarea);
 
+    //@Query(value="select nombrearea from pm_db.areas where idarea = ?1", nativeQuery = true)
+    //List<AreaEntity> listarAreasporUsuarios(int idarea);
+
 }
