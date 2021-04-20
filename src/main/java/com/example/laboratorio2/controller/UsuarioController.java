@@ -39,6 +39,7 @@ public class UsuarioController {
     
     @PostMapping("/usuario/guardar")
     public String usuarioSave(UsuarioEntity usuario){
+        System.out.println("El idarea es " + usuario.getIdarea());
         usuarioRepository.save(usuario);
         return "redirect:/usuario/listar";
         
