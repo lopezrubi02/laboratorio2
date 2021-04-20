@@ -20,6 +20,19 @@
 <h2>Nuevo Proyecto</h2>
 <hr/>
 <form method="post" th:action="@{'/proyecto/guardar'}">
+  <div class="form-group">
+    <label for="nombreproyecto">Nombres del Proyecto</label>
+    <input name="nombresproyecto" type="text" class="form-control" id="nombreproyecto">
+  </div>
+
+  <div class="form-group">
+    <label for="usuario_owner">Area</label>
+    <select id="usuario_owner">
+      <option th:each="usuario : ${listaUsuarios}"
+              th:value="${usuario.correo}"
+              th:text="${usuario.nombres+ ' ' + usuario.apellidos}"></option>
+    </select>
+  </div>
   <a th:href="@{'/proyecto/listar'}" class="btn btn-danger">Cancelar</a>
   <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
