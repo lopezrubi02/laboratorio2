@@ -2,6 +2,13 @@ package com.example.laboratorio2.repository;
 
 import com.example.laboratorio2.entity.ActividadEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface ActividadRepository extends JpaRepository<ActividadEntity,Integer> {
+
+
+    @Query(value="select * from actividades",nativeQuery = true)
+    List<ActividadEntity> listaDeActividadesPorProyecto (int idproyecto);
 }

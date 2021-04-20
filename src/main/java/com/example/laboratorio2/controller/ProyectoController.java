@@ -35,7 +35,7 @@ public class ProyectoController {
         if(proyectoOpt.isPresent()){
             ProyectoEntity proyecto = proyectoOpt.get();
             model.addAttribute("proyecto",proyecto);
-            model.addAttribute("listaActividades",actividadRepository.findAll());
+            model.addAttribute("listaActividades",actividadRepository.listaDeActividadesPorProyecto(id));
             return "editarProyecto";
         }else{
             return "redirect:/proyecto";

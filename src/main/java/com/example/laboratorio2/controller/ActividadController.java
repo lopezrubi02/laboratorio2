@@ -3,6 +3,7 @@ package com.example.laboratorio2.controller;
 import com.example.laboratorio2.entity.ActividadEntity;
 import com.example.laboratorio2.entity.ProyectoEntity;
 import com.example.laboratorio2.repository.ActividadRepository;
+import com.example.laboratorio2.repository.ProyectoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,16 +18,22 @@ public class ActividadController {
     @Autowired
     ActividadRepository actividadRepository;
 
+    @Autowired
+    ProyectoRepository proyectoRepository;
+
 
     @GetMapping("/actividad/editar")
     public String editarActividad(@RequestParam("id") int id, Model model){
 
         Optional<ActividadEntity> actividadOpt = actividadRepository.findById(id);
+        Optional<ProyectoEntity> proyectoOpt = proyectoRepository.findById(id);
 
         if(actividadOpt.isPresent()){
             ActividadEntity actividad = actividadOpt.get();
-            model.addAttribute("actividad",actividad);
+            ProyectoEntity proyecto = proyectoOpt.get();
 
+            model.addAttribute("actividad",actividad);
+            model.addAttribute("proyecto",proyecto);
             return "actividad/editarActividad";
         }else{
             return "redirect:/actividad/editar?id=" + id ;
