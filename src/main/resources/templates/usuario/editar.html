@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo
+    <title>Editar
         Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -28,9 +28,10 @@
     <div class="form-group">
         <label for="idarea">Area</label>
         <select id="idarea">
+            <option th:value="${usuario.getIdarea()}"selected th:text="${}"></option>
             <option th:each="areas : ${listaAreas}"
-                th:value="${areas.getIdarea()}"
-                th:text="${areas.getNombrearea()}"></option>
+                    th:value="${areas.getIdarea()}"
+                    th:text="${areas.getNombrearea()}"></option>
         </select>
     </div>
 
