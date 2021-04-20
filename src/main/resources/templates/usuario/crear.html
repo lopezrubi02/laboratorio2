@@ -27,7 +27,7 @@
 
     <div class="form-group">
         <label for="idarea">Area</label>
-        <select id="idarea">
+        <select id="idarea" name="idarea">
             <option th:each="areas : ${listaAreas}"
                 th:value="${areas.getIdarea()}"
                 th:text="${areas.getNombrearea()}"></option>

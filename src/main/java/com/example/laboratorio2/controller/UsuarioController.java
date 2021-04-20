@@ -55,8 +55,22 @@ public class UsuarioController {
             model.addAttribute("listaAreas",areaRepository.findAll());
             return "usuario/editar";
         }else{
-            return "redirect:/usuario/lista";
+            return "redirect:/usuario/listar";
         }
+    }
+
+    @GetMapping("/usuario/borrar")
+    public String borrarUsuario(Model model,
+                                      @RequestParam("correo") String correo,
+                                      RedirectAttributes attr) {
+
+        Optional<UsuarioEntity> optShipper = usuarioRepository.findById(correo);
+        if (optShipper.isPresent()) {
+            usuarioRepository.deleteById(correo);
+            attr.addFlashAttribute("msg","Usuario borrado exitosamente");
+        }
+        return "redirect:/usuario/listar";
+
     }
 
 
