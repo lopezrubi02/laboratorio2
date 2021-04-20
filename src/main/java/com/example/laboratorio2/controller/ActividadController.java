@@ -32,7 +32,7 @@ public class ActividadController {
     public String agregarActividad(Model model){
 
         model.addAttribute("listaUsuarios",usuarioRepository.findAll());
-        return "atividad/crear";
+        return "actividad/crear";
     }
 
     @PostMapping("actividad/guardar")
@@ -58,12 +58,12 @@ public class ActividadController {
 
         if(actividadOpt.isPresent()){
             ActividadEntity actividad = actividadOpt.get();
-          //  ProyectoEntity proyecto = proyectoOpt.get();
+           //ProyectoEntity proyecto = proyectoOpt.get();
 
             model.addAttribute("actividad",actividad);
-            //model.addAttribute("proyecto",proyecto);
+
             model.addAttribute("listaUsuarios",usuarioRepository.findAll());
-            return "actividad/editarActividad";
+            return "/actividad/editarActividad";
         }else{
             return "redirect:/proyecto/editarProyecto?id=" + id ;
         }

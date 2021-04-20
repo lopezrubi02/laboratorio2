@@ -42,7 +42,7 @@ public class ProyectoController {
             model.addAttribute("proyecto",proyecto);
 
             model.addAttribute("listaActividades",actividadRepository.listaDeActividadesPorProyecto(id));
-            return "/actividad/editarActividad";
+            return "/proyecto/editarProyecto";
         }else{
             return "redirect:/proyecto/listar";
         }

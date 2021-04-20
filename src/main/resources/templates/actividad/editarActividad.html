@@ -43,7 +43,7 @@
         <label for="estado">Estado</label>
         <input type="text" class="form-control" th:field="*{estado}">
     </div>
-    <a th:href="@{'/proyecto/editar?id=' + ${proyecto.idproyecto}}" class="btn btn-danger">Cancelar</a>
+    <a th:href="@{'/proyecto/editar?id=' + ${actividad.getIdproyecto()}}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
 <br>
