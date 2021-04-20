@@ -18,10 +18,11 @@
         </nav>
         <h2>Editar Area</h2>
         <hr/>
-        <form method="post" th:action="@{'/area/guardar'}">
+        <form method="post" th:action="@{'/area/guardar'}" th:object="${area}">
+            <input type="hidden" th:field="*{idarea}">
             <div class="form-group">
                 <label for="nombrearea">Nombre del area</label>
-                <input name="nombrearea" type="text" class="form-control" id="nombrearea">
+                <input type="text" class="form-control" th:field="*{nombrearea}" >
             </div>
             <a th:href="@{'/area/listar'}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>
