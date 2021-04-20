@@ -37,9 +37,10 @@ public class AreaController {
     @PostMapping("/area/guardar")
     public String areaSave(AreaEntity area, RedirectAttributes attr){
         System.out.println("nombrearea" + area.getNombrearea());
-        areaRepository.save(area);
+        //la pk se genere manualmente
         Optional<AreaEntity> areaOpt = areaRepository.findById(area.getIdarea());
-        if(area.getIdarea()==areaOpt.isPresent()){
+        areaRepository.save(area);
+        if(areaOpt.isPresent()){
             attr.addFlashAttribute("msg","Area editada exitosamente");
         }else{
             attr.addFlashAttribute("msg","Area creada exitosamente");
