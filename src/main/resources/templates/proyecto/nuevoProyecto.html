@@ -27,7 +27,7 @@
 
   <div class="form-group">
     <label for="usuario_owner">Area</label>
-    <select id="usuario_owner">
+    <select id="usuario_owner" name="usuario_owner">
       <option th:each="usuario : ${listaUsuarios}"
               th:value="${usuario.correo}"
               th:text="${usuario.nombres+ ' ' + usuario.apellidos}"></option>
