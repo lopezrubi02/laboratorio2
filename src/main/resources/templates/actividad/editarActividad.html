@@ -18,7 +18,7 @@
 </nav>
 <h2>Editar Actividad</h2>
 <hr/>
-<form method="post" th:action="@{'/actvidad/guardar'}" th:object="*{actividad}">
+<form method="post" th:action="@{'/actividad/guardar'}" th:object="${actividad}">
     <input type="hidden" th:field="*{idactividad}">
     <div class="form-group">
         <label for="nombreactividad">Nombre de la actividad</label>

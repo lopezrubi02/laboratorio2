@@ -43,17 +43,18 @@ public class ActividadController {
     public String editarActividad(@RequestParam("id") int id, Model model){
 
         Optional<ActividadEntity> actividadOpt = actividadRepository.findById(id);
-        Optional<ProyectoEntity> proyectoOpt = proyectoRepository.findById(id);
+        //Optional<ProyectoEntity> proyectoOpt = proyectoRepository.findById(id);
 
         if(actividadOpt.isPresent()){
             ActividadEntity actividad = actividadOpt.get();
-            ProyectoEntity proyecto = proyectoOpt.get();
+          //  ProyectoEntity proyecto = proyectoOpt.get();
 
             model.addAttribute("actividad",actividad);
-            model.addAttribute("proyecto",proyecto);
+            //model.addAttribute("proyecto",proyecto);
+            model.addAttribute("listaUsuarios",usuarioRepository.findAll());
             return "actividad/editarActividad";
         }else{
-            return "redirect:/actividad/editar?id=" + id ;
+            return "redirect:/proyecto/editarProyecto?id=" + id ;
         }
     }
 
