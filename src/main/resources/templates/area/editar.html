@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Editar Proyecto</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse">
+                <a class="navbar-brand" href="/proyecto/listar">Proyectos</a>
+                <a class="navbar-brand" href="/usuario/listar">Usuarios</a>
+                <a class="navbar-brand" href="/area/listar">Areas</a>
+            </div>
+        </nav>
+        <h2>Editar Area</h2>
+        <hr/>
+        <form method="post" th:action="@{'/area/guardar'}">
+            <div class="form-group">
+                <label for="nombrearea">Nombre del area</label>
+                <input name="nombrearea" type="text" class="form-control" id="nombrearea">
+            </div>
+            <a th:href="@{'/area/listar'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        <br>
+        <h5>Lista de Usuarios del Area</h5>
+        <br>
+        <table class="table table-sm">
+            <tr>
+                <th>#</th>
+                <th>Correo del usuario</th>
+                <th>Nombres del usuario</th>
+                <th>Apellido del usuario</th>
+            </tr>
+            <tr th:each="usuario, u : ${listaUsuarios}">
+                <td th:text="${u.index + 1}"></td>
+                <td th:text="${usuario.}"></td>
+                <td th:text="${usuario.}"></td>
+                <td th:text="${usuario.}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
+
