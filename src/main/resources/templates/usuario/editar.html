@@ -13,22 +13,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse">
         <a class="navbar-brand" href="/proyecto/listar">Proyectos</a>
-        <a class="navbar-brand" href="/templates/usuario/listar">Usuarios</a>
+        <a class="navbar-brand" href="/usuario/listar">Usuarios</a>
         <a class="navbar-brand" href="/area/listar">Areas</a>
     </div>
 </nav>
-<h2>Nuevo Usuario</h2>
+<h2>Editar Usuario</h2>
 <hr/>
 <form method="post" th:action="@{'/usuario/guardar'}">
     <div class="form-group">
         <label for="correo">Correo del Usuario</label>
-        <input name="correo" type="text" class="form-control" id="correo">
+        <input name="correo" type="text" class="form-control" id="correo" th:value="${usuario.correo}">
     </div>
 
     <div class="form-group">
         <label for="idarea">Area</label>
         <select id="idarea">
-            <option th:value="${usuario.getIdarea()}"selected th:text="${}"></option>
+
+            <option th:value="${usuario.getIdarea()}" selected
+                    th:each="areas :${listaAreas}"
+                    th:if="${usuario.getIdarea() eq areas.getIdarea()}" th:text="${areas.getNombrearea()}"></option>
             <option th:each="areas : ${listaAreas}"
                     th:value="${areas.getIdarea()}"
                     th:text="${areas.getNombrearea()}"></option>
@@ -37,11 +40,11 @@
 
     <div class="form-group">
         <label for="nombres">Nombres del Usuario</label>
-        <input name="nombres" type="text" class="form-control" id="nombres">
+        <input name="nombres" type="text" class="form-control" id="nombres" th:value="${usuario.nombres}">
     </div>
     <div class="form-group">
         <label for="apellidos">Apellidos del Usuario</label>
-        <input name="apellidos" type="text" class="form-control" id="apellidos">
+        <input name="apellidos" type="text" class="form-control" id="apellidos" th:value="${usuario.apellidos}">
     </div>
     <a th:href="@{'/usuario/listar'}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
