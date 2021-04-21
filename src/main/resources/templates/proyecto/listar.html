@@ -18,7 +18,8 @@
     </div>
 </nav>
 <h2>Lista de Proyectos</h2>
-<a class="btn btn-primary mt-4 mb-4" th:href="${'/proyecto/agregar'}">Nuevo Proyecto</a>
+<a class="btn btn-primary mt-4 mb-4" href="/proyecto/agregar">Nuevo Proyecto</a>
+<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
 <table class="table table-sm">
     <tr>
         <th>#</th>
@@ -31,8 +32,8 @@
         <td th:text="${info.index + 1}"></td>
         <td th:text="${proyecto.nombreproyecto}"></td>
         <td th:text="${proyecto.usuario_owner}"></td>
-        <td><a class="btn btn-info" th:href="@{'/proyecto/editar?id=' + ${proyecto.idproyecto}}">Editar</a></td>
-        <td><a class="btn btn-danger" th:href="@{'/proyecto/borrar?id=' + ${proyecto.idproyecto}}">Borrar</a></td>
+        <td><a class="btn btn-info" th:href="@{'/proyecto/editar?idproyecto=' + ${proyecto.idproyecto}}">Editar</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/proyecto/borrar?idproyecto=' + ${proyecto.idproyecto}}">Borrar</a></td>
     </tr>
 </table>
 </body>
