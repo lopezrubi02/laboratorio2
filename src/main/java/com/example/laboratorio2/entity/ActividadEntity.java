@@ -14,7 +14,7 @@ public class ActividadEntity {
     private String descripcion;
     private int idproyecto;
     private String usuario_owner;
-    private int peso;
+    private float peso;
     private Boolean estado; //true:finalizado; False:pendiente
 
     public int getIdactividad() {
@@ -57,11 +57,11 @@ public class ActividadEntity {
         this.usuario_owner = usuario_owner;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
 

@@ -30,16 +30,17 @@
     </div>
     <div class="form-group">
         <label for="usuario_owner">Usuario Responsable</label>
-        <select id="usuario_owner">
+        <select id="usuario_owner" name="usuario_owner">
             <option th:each="usuario : ${listaUsuarios}"
-                    th:text="${usuario.correo}"></option>
+                    th:text="${usuario.correo}"
+                    th:value="${usuario.getCorreo()}"></option>
         </select>
     </div>
     <div class="form-group">
         <label for="peso">Peso</label>
-        <input name="peso" type="text" class="form-control" id="peso">
+        <input name="peso" type="text" class="form-control" id="peso" value="0">
     </div>
-    <a th:href="@{'/proyecto/editar?id=' + ${idProyectoactual}}" class="btn btn-danger">Cancelar</a>
+    <a th:href="@{''}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
 </body>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -47,8 +48,9 @@ public class ProyectoController {
             model.addAttribute("listaUsuarios",usuarioRepository.findAll());
             model.addAttribute("pesoActividades",actividadRepository.valorSumaTotal(id));
             model.addAttribute("pesoActividadesFinalizadas",actividadRepository.valorSumaFinalizado(id));
-            System.out.println(actividadRepository.valorSumaTotal(id));
-            System.out.println(actividadRepository.valorSumaFinalizado(id));
+            model.addAttribute("idproyectoactual",id);
+            //System.out.println(actividadRepository.valorSumaTotal(id));
+            //System.out.println(actividadRepository.valorSumaFinalizado(id));
             return "/proyecto/editarProyecto";
         }else{
             return "redirect:/proyecto/listar";
@@ -63,7 +65,16 @@ public class ProyectoController {
 
     @PostMapping("/proyecto/guardar")
     public String guardarProyecto(ProyectoEntity proyecto,RedirectAttributes attr){
-        if(proyecto.getIdproyecto() == 0){
+
+        List<ProyectoEntity> listaProyectos = proyectoRepository.findAll();
+        Boolean existeProyecto = false;
+        for(ProyectoEntity proyectoX : listaProyectos){
+            if(proyectoX.getIdproyecto() == proyecto.getIdproyecto()){
+                existeProyecto = true;
+            }
+        }
+
+        if(existeProyecto){
             attr.addFlashAttribute("msg","Proyecto creado exitosamente");
         }else{
             attr.addFlashAttribute("msg", "Proyecto actualizado exitosamente");
