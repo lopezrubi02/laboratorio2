@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,6 +21,8 @@ public class AreaController {
     AreaRepository areaRepository;
     @Autowired
     UsuarioRepository usuarioRepository;
+
+
 
     @GetMapping("/area/listar")
     public String areaList(Model model) {
@@ -31,18 +34,26 @@ public class AreaController {
     public String areaNew(){
         return "area/crear";
     }
-
+//comentario prueba
     @PostMapping("/area/guardar")
     public String areaSave(AreaEntity area, RedirectAttributes attr){
-        System.out.println("nombrearea" + area.getNombrearea());
-        //la pk se genere manualmente
-        Optional<AreaEntity> areaOpt = areaRepository.findById(area.getIdarea());
-        areaRepository.save(area);
-        if(areaOpt.isPresent()){
+
+        List<AreaEntity> listaAreas = areaRepository.findAll();
+        Boolean existeArea = false;
+
+        for(AreaEntity areaX : listaAreas){
+            if(areaX.getIdarea()==area.getIdarea()){
+                existeArea = true;
+            }
+        }
+
+        if(existeArea){
             attr.addFlashAttribute("msg","Area editada exitosamente");
         }else{
             attr.addFlashAttribute("msg","Area creada exitosamente");
         }
+        areaRepository.save(area);
+
         return "redirect:/area/listar";
     }
 
@@ -67,6 +78,8 @@ public class AreaController {
             attr.addFlashAttribute("msg","Area borrada exitosamente");
         }
         return "redirect:/area/listar";
+
     }
+
 
 }

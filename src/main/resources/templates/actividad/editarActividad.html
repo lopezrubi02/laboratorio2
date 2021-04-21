@@ -30,9 +30,12 @@
     </div>
     <div class="form-group">
         <label for="usuario_owner">Usuario Responsable</label>
-        <select id="usuario_owner">
+        <select id="usuario_owner" name="usuario_owner">
             <option th:each="usuario : ${listaUsuarios}"
-                    th:text="${usuario.correo}" th:selected="${usuario.correo==actividad.usuario_owner}"></option>
+                    th:text="${usuario.correo}"
+                    th:selected="${usuario.correo==actividad.usuario_owner}"
+                    th:value="${usuario.correo}"
+            ></option>
         </select>
     </div>
     <div class="form-group">
@@ -41,9 +44,12 @@
     </div>
     <div class="form-group">
         <label for="estado">Estado</label>
-        <input type="text" class="form-control" th:field="*{estado}">
+        <select id="estado" name="estado">
+            <option th:text="Finalizado" th:value="1"></option>
+            <option th:text = "Pendiente" th:value="0"></option>
+        </select>
     </div>
-    <a th:href="@{'/proyecto/editar?id=' + ${actividad.getIdproyecto()}}" class="btn btn-danger">Cancelar</a>
+    <a th:href="@{'/proyecto/editar?id=' + ${idProyectoactual}}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
 <br>

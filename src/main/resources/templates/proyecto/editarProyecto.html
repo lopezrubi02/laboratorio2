@@ -38,11 +38,11 @@
 <br>
 <h5>Lista de Actividades del Proyecto</h5>
 <h7>Progreso del Proyecto</h7>
-<!--<div class="progress" th:if="${pesoActividades != 0}">
+<div class="progress" th:if="${pesoActividades != null}">
     <div class="progress-bar" role="progressbar" th:attr="aria-valuenow=${pesoActividadesFinalizadas/pesoActividades*100}" th:style="'width:'+ ${pesoActividadesFinalizadas/pesoActividades*100}+'%'" aria-valuemin="0" aria-valuemax="100" th:text="${pesoActividadesFinalizadas/pesoActividades*100}+'%'"></div>
-</div> -->
+</div>
 <br>
-<a class="btn btn-primary mt-4 mb-4" th:href="${'/actividad/agregar'}">Nueva Actividad</a>
+<a class="btn btn-primary mt-4 mb-4" th:href="@{'/actividad/agregar?idproyectoactual=' + ${idproyectoactual}}">Nueva Actividad</a>
 <table class="table table-sm">
     <tr>
         <th>#</th>
@@ -58,7 +58,7 @@
         <td th:text="${actividad.nombreactividad}"></td>
         <td th:text="${actividad.usuario_owner}"</td>
         <td th:text="${actividad.peso}"></td>
-        <td th:text="${actividad.estado}"></td>
+        <td th:text="${actividad.estado} ? 'Finalizado' : 'Pendiente'"></td>
         <td><a class="btn btn-info" th:href="@{'/actividad/editar?id=' + ${actividad.idactividad}}">Editar</a></td>
         <td><a class="btn btn-danger" th:href="@{'/actividad/borrar?id=' + ${actividad.idactividad}}">Borrar</a></td>
     </tr>
