@@ -29,10 +29,18 @@ public class ActividadController {
     UsuarioRepository usuarioRepository;
 
     @GetMapping("/actividad/agregar")
-    public String agregarActividad(Model model){
+    public String agregarActividad(Model model,@RequestParam("idProyecto") int idProyecto){
 
-        model.addAttribute("listaUsuarios",usuarioRepository.findAll());
-        return "actividad/crear";
+        Optional<ProyectoEntity> proyectoOpt = proyectoRepository.findById(idProyecto);
+        if(proyectoOpt.isPresent()){
+            ProyectoEntity proyecto = proyectoOpt.get();
+            model.addAttribute("proyecto",proyecto);
+            model.addAttribute("listaUsuarios",usuarioRepository.findAll());
+            return "actividad/crear";
+        }else{
+            return "redirect:/proyecto/listar";
+        }
+
     }
 
     @PostMapping("actividad/guardar")
