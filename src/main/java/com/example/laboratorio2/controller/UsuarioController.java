@@ -38,8 +38,21 @@ public class UsuarioController {
     }
     
     @PostMapping("/usuario/guardar")
-    public String usuarioSave(UsuarioEntity usuario){
-        System.out.println("El idarea es " + usuario.getIdarea());
+    public String usuarioSave(UsuarioEntity usuario,RedirectAttributes attr){
+        List<UsuarioEntity> ListaUsuarios =usuarioRepository.findAll();
+
+        Boolean ExisteCorreo = false;
+
+        for(UsuarioEntity usuarioX: ListaUsuarios){
+            if(usuarioX.getCorreo().equals(usuario.getCorreo())) {
+                ExisteCorreo = true;
+            }
+        }
+        if(ExisteCorreo){
+            attr.addFlashAttribute("msg","Usuario actualizado exitosamente");
+        }else{
+            attr.addFlashAttribute("msg", "Usuario creado exitosamente");
+        }
         usuarioRepository.save(usuario);
         return "redirect:/usuario/listar";
         

@@ -20,20 +20,20 @@
 <h2>Editar Usuario</h2>
 <hr/>
 <form method="post" th:action="@{'/usuario/guardar'}">
+    <input type="hidden" th:field="*{usuario.correo}">
+
     <div class="form-group">
         <label for="correo">Correo del Usuario</label>
-        <input name="correo" type="text" class="form-control" id="correo" th:value="${usuario.correo}">
+        <input name="correo" type="text" class="form-control" id="correo" th:value="${usuario.correo}" disabled>
+        <!-- El correo es el id del usuario, de el depende -->
     </div>
-
     <div class="form-group">
         <label for="idarea">Area</label>
         <select id="idarea" name="idarea">
 
-            <option th:value="${usuario.getIdarea()}" selected
-                    th:each="areas :${listaAreas}"
-                    th:if="${usuario.getIdarea() eq areas.getIdarea()}" th:text="${areas.getNombrearea()}"></option>
+
             <option th:each="areas : ${listaAreas}"
-                    th:value="${areas.getIdarea()}"
+                    th:value="${areas.getIdarea()}" th:selected="${usuario.getIdarea()==areas.getIdarea()}"
                     th:text="${areas.getNombrearea()}"></option>
         </select>
     </div>

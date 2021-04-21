@@ -27,11 +27,8 @@
         <label for="usuario_owner">Usuario Responsable</label>
         <select id="usuario_owner" name="usuario_owner">
 
-            <option th:value="${proyecto.usuario_owner}" selected
-                    th:each="usuario :${listaUsuarios}"
-                    th:if="${proyecto.usuario_owner eq usuario.correo}" th:text="${usuario.nombres + ' '+ usuario.apellidos}"></option>
             <option th:each="usuario : ${listaUsuarios}"
-                    th:value="${usuario.correo}"
+                    th:value="${usuario.correo}" th:selected="${proyecto.usuario_owner==usuario.correo}"
                     th:text="${usuario.nombres + ' ' + usuario.apellidos}"></option>
         </select>
     </div>
