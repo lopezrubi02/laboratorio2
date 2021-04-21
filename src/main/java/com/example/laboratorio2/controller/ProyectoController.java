@@ -47,7 +47,12 @@ public class ProyectoController {
             model.addAttribute("listaActividades",actividadRepository.listaDeActividadesPorProyecto(id));
             model.addAttribute("listaUsuarios",usuarioRepository.findAll());
             model.addAttribute("pesoActividades",actividadRepository.valorSumaTotal(id));
-            model.addAttribute("pesoActividadesFinalizadas",actividadRepository.valorSumaFinalizado(id));
+            if(actividadRepository.valorSumaFinalizado(id) == null){
+                model.addAttribute("pesoActividadesFinalizadas",0);
+            }else{
+                model.addAttribute("pesoActividadesFinalizadas",actividadRepository.valorSumaFinalizado(id));
+
+            }
             model.addAttribute("idproyectoactual",id);
             //System.out.println(actividadRepository.valorSumaTotal(id));
             //System.out.println(actividadRepository.valorSumaFinalizado(id));
