@@ -45,6 +45,8 @@ public class ProyectoController {
 
             model.addAttribute("listaActividades",actividadRepository.listaDeActividadesPorProyecto(id));
             model.addAttribute("listaUsuarios",usuarioRepository.findAll());
+            model.addAttribute("pesoActividades",actividadRepository.valorSumaTotal(id));
+            model.addAttribute("pesoActividadesFinalizadas",actividadRepository.valorSumaFinalizado(id));
             return "/proyecto/editarProyecto";
         }else{
             return "redirect:/proyecto/listar";
