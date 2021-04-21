@@ -20,6 +20,9 @@
 <hr/>
 <form method="post" th:action="@{'/actividad/guardar'}" th:object="${actividad}">
     <input type="hidden" th:field="*{idactividad}">
+    <label for="idproyecto"></label>
+    <input name ="idproyecto" type="hidden" th:value="${idProyectoactual}">
+
     <div class="form-group">
         <label for="nombreactividad">Nombre de la actividad</label>
         <input type="text" class="form-control" th:field="*{nombreactividad}">

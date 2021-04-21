@@ -20,6 +20,8 @@
 <h2>Nueva Actividad</h2>
 <hr/>
 <form method="post" th:action="@{'/actividad/guardar'}">
+    <label for="idproyecto"></label>
+    <input name ="idproyecto" type="hidden" th:value="${idproyectoactual}">
 
     <div class="form-group">
         <label for="nombreActividad">Nombre de la actividad</label>
