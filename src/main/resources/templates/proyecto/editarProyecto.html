@@ -41,9 +41,9 @@
 <br>
 <h5>Lista de Actividades del Proyecto</h5>
 <h7>Progreso del Proyecto</h7>
-<!--<div class="progress" th:if="${pesoActividades != 0}">
+<div class="progress" th:if="${pesoActividades != null}">
     <div class="progress-bar" role="progressbar" th:attr="aria-valuenow=${pesoActividadesFinalizadas/pesoActividades*100}" th:style="'width:'+ ${pesoActividadesFinalizadas/pesoActividades*100}+'%'" aria-valuemin="0" aria-valuemax="100" th:text="${pesoActividadesFinalizadas/pesoActividades*100}+'%'"></div>
-</div> -->
+</div>
 <br>
 <a class="btn btn-primary mt-4 mb-4" th:href="${''}">Nueva Actividad</a>
 <table class="table table-sm">

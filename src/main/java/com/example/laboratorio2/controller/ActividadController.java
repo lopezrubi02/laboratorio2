@@ -36,6 +36,7 @@ public class ActividadController {
             ProyectoEntity proyecto = proyectoOpt.get();
             model.addAttribute("proyecto",proyecto);
             model.addAttribute("listaUsuarios",usuarioRepository.findAll());
+
             return "actividad/crear";
         }else{
             return "redirect:/proyecto/listar";
@@ -69,7 +70,7 @@ public class ActividadController {
            //ProyectoEntity proyecto = proyectoOpt.get();
 
             model.addAttribute("actividad",actividad);
-
+            model.addAttribute("idProyectoactual",actividad.getIdproyecto());
             model.addAttribute("listaUsuarios",usuarioRepository.findAll());
             return "/actividad/editarActividad";
         }else{

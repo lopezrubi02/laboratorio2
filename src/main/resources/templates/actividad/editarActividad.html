@@ -43,7 +43,7 @@
         <label for="estado">Estado</label>
         <input type="text" class="form-control" th:if="*{estado} ? 'Finalizado' : 'Pendiente'">
     </div>
-    <a th:href="@{'/proyecto/editar?id=' + ${actividad.getIdproyecto()}}" class="btn btn-danger">Cancelar</a>
+    <a th:href="@{'/proyecto/editar?id=' + ${idProyectoactual}}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
 <br>

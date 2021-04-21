@@ -21,6 +21,8 @@ public class AreaController {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+
+
     @GetMapping("/area/listar")
     public String areaList(Model model) {
         model.addAttribute("listaArea",areaRepository.findAll());
@@ -31,13 +33,12 @@ public class AreaController {
     public String areaNew(){
         return "area/crear";
     }
-
+//comentario prueba
     @PostMapping("/area/guardar")
     public String areaSave(AreaEntity area, RedirectAttributes attr){
         System.out.println("nombrearea" + area.getNombrearea());
-        //la pk se genere manualmente
-        Optional<AreaEntity> areaOpt = areaRepository.findById(area.getIdarea());
         areaRepository.save(area);
+        Optional<AreaEntity> areaOpt = areaRepository.findById(area.getIdarea());
         if(areaOpt.isPresent()){
             attr.addFlashAttribute("msg","Area editada exitosamente");
         }else{
@@ -67,6 +68,8 @@ public class AreaController {
             attr.addFlashAttribute("msg","Area borrada exitosamente");
         }
         return "redirect:/area/listar";
+
     }
+
 
 }

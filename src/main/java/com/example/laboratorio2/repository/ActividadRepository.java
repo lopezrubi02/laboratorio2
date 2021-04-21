@@ -13,8 +13,8 @@ public interface ActividadRepository extends JpaRepository<ActividadEntity,Integ
     List<ActividadEntity> listaDeActividadesPorProyecto (int idproyecto);
 
     @Query(value="select SUM(peso) from actividades where idproyecto= ?1",nativeQuery = true)
-    List<Integer> valorSumaTotal (int idproyecto);
+    Double valorSumaTotal (int idproyecto);
 
     @Query(value="select SUM(peso) from actividades where idproyecto= ?1 and estado=1", nativeQuery = true)
-    List<Integer> valorSumaFinalizado (int idproyecto);
+    Double valorSumaFinalizado (int idproyecto);
 }
