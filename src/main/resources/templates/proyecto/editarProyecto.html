@@ -19,6 +19,21 @@
 <h2>Editar Proyecto</h2>
 <hr/>
 <form method="post" th:action="@{'/proyecto/guardar'}">
+    <div class="form-group">Nombre del Proyecto</label>
+        <input name="nombreproyecto" type="text" class="form-control" id="nombreproyecto" th:value="${proyecto.nombreproyecto}">
+    </div>
+    <div class="form-group">
+        <label for="usuario_owner">Usuario Responsable</label>
+        <select id="usuario_owner" name="usuario_owner">
+
+            <option th:value="${proyecto.usuario_owner}" selected
+                    th:each="usuario :${listaUsuarios}"
+                    th:if="${proyecto.usuario_owner eq usuario.correo}" th:text="${usuario.nombres + ' '+ usuario.apellidos}"></option>
+            <option th:each="usuario : ${listaUsuarios}"
+                    th:value="${usuario.correo}"
+                    th:text="${usuario.nombres + ' ' + usuario.apellidos}"></option>
+        </select>
+    </div>
     <a th:href="@{'/proyecto/listar'}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
