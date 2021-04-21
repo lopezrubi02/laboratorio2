@@ -49,7 +49,7 @@
             <option th:text = "Pendiente" th:value="0"></option>
         </select>
     </div>
-    <a th:href="@{'/proyecto/editar?id=' + ${idProyectoactual}}" class="btn btn-danger">Cancelar</a>
+    <a th:href="@{'/proyecto/editar?idproyecto=' + ${idProyectoactual}}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
 <br>

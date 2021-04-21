@@ -65,7 +65,13 @@ public class ActividadController {
         }else{
             attr.addFlashAttribute("Actividad agregada exitosamente");
         }
-
+        System.out.println(actividad.getIdproyecto());
+        System.out.println(actividad.getDescripcion());
+        System.out.println(actividad.getNombreactividad());
+        System.out.println(actividad.getUsuario_owner());
+        System.out.println(actividad.getEstado());
+        System.out.println(actividad.getPeso());
+        System.out.println(actividad.getIdactividad());
         actividadRepository.save(actividad);
         return "redirect:/proyecto/listar";
     }

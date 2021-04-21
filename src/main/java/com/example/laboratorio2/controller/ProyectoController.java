@@ -75,9 +75,9 @@ public class ProyectoController {
         }
 
         if(existeProyecto){
-            attr.addFlashAttribute("msg","Proyecto creado exitosamente");
+            attr.addFlashAttribute("msg","Proyecto actualizado exitosamente");
         }else{
-            attr.addFlashAttribute("msg", "Proyecto actualizado exitosamente");
+            attr.addFlashAttribute("msg", "Proyecto creado exitosamente");
         }
         proyectoRepository.save(proyecto);
         return "redirect:/proyecto/listar";
