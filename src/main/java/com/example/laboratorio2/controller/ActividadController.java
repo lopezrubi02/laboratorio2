@@ -61,19 +61,13 @@ public class ActividadController {
             }
         }
         if(existeActividad){
-            attr.addFlashAttribute("Actividad editada exitosamente");
+            attr.addFlashAttribute("msg","Actividad editada exitosamente");
         }else{
-            attr.addFlashAttribute("Actividad agregada exitosamente");
+            attr.addFlashAttribute("msg","Actividad agregada exitosamente");
         }
-        System.out.println(actividad.getIdproyecto());
-        System.out.println(actividad.getDescripcion());
-        System.out.println(actividad.getNombreactividad());
-        System.out.println(actividad.getUsuario_owner());
-        System.out.println(actividad.getEstado());
-        System.out.println(actividad.getPeso());
-        System.out.println(actividad.getIdactividad());
+
         actividadRepository.save(actividad);
-        return "redirect:/proyecto/listar";
+        return "redirect:/proyecto/editar?idproyecto=" + actividad.getIdproyecto();
     }
 
     @GetMapping("/actividad/editar")
